@@ -1,9 +1,11 @@
 FROM technitium/dns-server:latest
 
-EXPOSE 5380
-EXPOSE 443
-
 ENV DNS_SERVER_DOMAIN=localhost
 ENV DNS_SERVER_PREFER_IPV6=false
 
-CMD ["dotnet", "/opt/technitium/dns/DnsServerApp.dll"]
+# Указываем папку конфигов отдельно от бинарников
+RUN mkdir -p /etc/dns
+
+EXPOSE 5380
+
+CMD ["dotnet", "/opt/technitium/dns/DnsServerApp.dll", "/etc/dns"]
