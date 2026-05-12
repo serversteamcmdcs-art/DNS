@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: technitium-dns
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DNS_SERVER_DOMAIN
+        value: dns.yourdomain.com
+    ports:
+      - port: 5380
+        protocol: HTTP
